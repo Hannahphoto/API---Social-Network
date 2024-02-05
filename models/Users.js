@@ -17,10 +17,10 @@ const usersSchema = new Schema(
         friends: {
             //array of _id values referencing the User Model (self-reference)
         },
-        _id: {
-            type: Number,
-            required: true,
-        }
+        // _id: {// do i need this?
+        //     type: Number,
+        //     required: true,
+        // }
     },
 
     //schema settings - create a virtual called friendCount that retrieves the length of the uses friends array field on query
