@@ -9,10 +9,10 @@ const {Thoughts} = require('./models');
 const PORT = process.env.PORT || 5001;
 const app = express();
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}))
 app.use(express.json());
 
-//Get all users
+// ???//Get all users
 
 //Get single user by _id
 
@@ -20,7 +20,7 @@ app.use(express.json());
 
 //put - update user by _id
 
-//delete - remove a user by _id
+// delete - remove a user by _id???????
 
 db.once('open', ()=>{
     app.listen(PORT, ()=>{
