@@ -4,7 +4,8 @@
     "mongoose": "^8.1.1"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "seed": "node utils/seeds"
   },
   "name": "api---social-network",
   "description": "An API for  a social network web application.",

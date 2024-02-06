@@ -13,10 +13,11 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json());
 
 // ???//Get all users
-app.get('/all-users', async (req, res)=>{
+app.get('/users', async (req, res)=>{
     try{
         //using model in users route to find all users
         const users = await Users.find({});
+        console.log(users);
         res.status(200).json(users);
     }catch (err){
         res.status(500).json({message:'Internal server error'});

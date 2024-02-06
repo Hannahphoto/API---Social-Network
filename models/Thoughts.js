@@ -1,4 +1,5 @@
 const {Schema, model} = require('mongoose');
+const reactionSchema = require('./Reaction');
 
 const thoughtsSchema = new Schema(
     {
@@ -9,21 +10,24 @@ const thoughtsSchema = new Schema(
         },
         createdAt: {
             type: Date,
-            default: Date.now,//set value to current timestamp on query
+            default: Date.now 
         },
         username: {//the user that created this thought
             type: String,
             required: true,
         },
-        reactions: {
+        reactions: [
             //array of nested documents created with the reactionSchema
-        },
+            reactionSchema,
+        ],
     },
 //schema settings - create a virtual called friendCount that retrieves the length of the uses friends array field on query
     {
         toJSON:{
-            virtruals: true
+            virtruals: true,
+            getters: true,
         },
+        id: false,
     }
 );
 //schema settings - create a virtual called friendCount that retrieves the length of the uses friends array field on query

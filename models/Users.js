@@ -11,16 +11,17 @@ const usersSchema = new Schema(
             required: true,
             //much mach valid email address (look into mongoose's matching validation)
         },
-        thoughts: {
+        thoughts: [{
             //array of _id values referencing the Thought model 
-        },
-        friends: {
+            type: Schema.Types.ObjectId,
+            ref: 'Thoughts'
+        }],
+        friends: [{
             //array of _id values referencing the User Model (self-reference)
-        },
-        // _id: {// do i need this?
-        //     type: Number,
-        //     required: true,
-        // }
+  
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }],
     },
 
     //schema settings - create a virtual called friendCount that retrieves the length of the uses friends array field on query
