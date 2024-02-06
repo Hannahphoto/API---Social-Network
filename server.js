@@ -13,6 +13,15 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json());
 
 // ???//Get all users
+app.get('/all-users', async (req, res)=>{
+    try{
+        //using model in users route to find all users
+        const users = await Users.find({});
+        res.status(200).json(users);
+    }catch (err){
+        res.status(500).json({message:'Internal server error'});
+    }
+});
 
 //Get single user by _id
 
@@ -24,6 +33,6 @@ app.use(express.json());
 
 db.once('open', ()=>{
     app.listen(PORT, ()=>{
-        console.log(`API server running on port ${PORT}`);
+        console.log(`API server running on port http://localhost:${PORT}`);
     });
 });
