@@ -1,7 +1,7 @@
 const { connect } = require('mongoose');
 const connection = require('../config/connection');
-const {Users} = require('../models');
-const {Thoughts} = require('../models/Thoughts')
+const {Users, Thoughts} = require('../models');
+// const {Thoughts} = require('../models/Thoughts')
 const userData = require('./usersSeed');
 const thoughtData = require('./thoughtsSeed');
 
