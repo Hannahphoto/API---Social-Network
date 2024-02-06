@@ -1,3 +1,4 @@
+const {ObjectId} = require('mongoose').Types;
 const {Thoughts, Users}= require('../models');
 
 module.exports={
@@ -47,16 +48,16 @@ module.exports={
                 return res.status(404).json({message: "No such thought exits."})
             }
 
-            // const user = await Users.findOneAndUpdate(
-            //     {users: req.params.userId},
-            //     {$pull: {users: req.params.thoughtId}},
-            //     {new: true}
-            //     )
-            // if(!thought){
-            //     return res.status(404).json({
-            //         message: 'User deleted, nut no thought found',
-            //     })
-            // }
+            const user = await Users.findOneAndUpdate(
+                {users: req.params.userId},
+                {$pull: {users: req.params.thoughtId}},
+                {new: true}
+                )
+            if(!thought){
+                return res.status(404).json({
+                    message: 'User deleted, nut no thought found',
+                })
+            }
             
             res.json({message:'User successfully deleted.'});
         }catch(err){
