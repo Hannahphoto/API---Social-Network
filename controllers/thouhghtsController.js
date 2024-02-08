@@ -13,7 +13,7 @@ module.exports={
         try{
             const thoughts = await Thoughts.find();
             const thoughtsObj = {
-                thoughts, 
+                thoughts,
                 thoughtsCount: await thoughtsCount(),
             };
             return res.json(thoughtsObj);

@@ -95,13 +95,13 @@ app.get('/thoughts', async (req, res)=>{
     }
 });
 
-//post create thought
+//post create thought(add a thought to a user?)
 
-//get a single thought
+//get a single thought by thought _id
 
-//update thought bu thought _id
+//update thought by thought _id
 
-//delete thought 
+//delete thought by thought _id
 
 db.once('open', ()=>{
     app.listen(PORT, ()=>{
