@@ -58,7 +58,7 @@ app.post('/createUser', async (req, res)=>{
 app.delete('/users/:userId', async (req, res)=>{
     //delete user by _id
     try{
-        const deleteUser = await Users.findOneAndRemove({
+        const deleteUser = await Users.findOneAndDelete({
             _id: req.params.userId
         });
         console.log(deleteUser);
