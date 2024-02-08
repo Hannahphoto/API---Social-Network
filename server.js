@@ -5,6 +5,7 @@ const db = require('./config/connection');
 const {Users} = require('./models');
 
 const {Thoughts} = require('./models');
+const { deleteUser } = require('./controllers/usersController');
 
 const PORT = process.env.PORT || 5001;
 const app = express();
@@ -37,11 +38,35 @@ app.get('/users/:id', async (req, res)=>{
 });
 
 //post a new user
+app.post('/createUser', async (req, res)=>{
+    //insert new user into model users route
+    try{
+        const newUser = Users.create({
+            username: req.body.username, 
+            email: req.body.email,
+        });
+        console.log(newUser);
+        res.status(200).json(newUser);
+    }catch(err){
+        res.status(500).json({messge: 'Internal server error'})
+    }
+});
 
 //put - update user by _id
 
 // delete - remove a user by _id???????
-
+app.delete('/users/:userId', async (req, res)=>{
+    //delete user by _id
+    try{
+        const deleteUser = await Users.findOneAndRemove({
+            _id: req.params.userId
+        });
+        console.log(deleteUser);
+        res.status(200).json(deleteUser);
+    }catch(err){
+        res.status(500).json({message: 'Internal server error'})
+    }
+});
 
 //get all thoughts
 app.get('/thoughts', async (req, res)=>{
@@ -53,6 +78,14 @@ app.get('/thoughts', async (req, res)=>{
         res.status(500).json({message: 'Internal server error'});
     }
 });
+
+//post create thought
+
+//get a single thought
+
+//update thought bu thought _id
+
+//delete thought 
 
 db.once('open', ()=>{
     app.listen(PORT, ()=>{
