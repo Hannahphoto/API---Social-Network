@@ -73,6 +73,33 @@ module.exports = {
         }
     },
 
+    //Update user
+    async updateUser(req, res){
+        try{
+            const user = await Users.findOneAndUpdate(
+                {username: req.body.username, 
+                email: req.body.email
+                });
+            if(!user){
+                return res.status(404).json({message: "No such user exists."})
+            }
+            const thought = await Thoughts.findOneAndUpdate(
+                {users: req.params.userId},
+                {$pull: {users: req.params.userId}},
+                {new: true}
+                )
+            if(!thought){
+                return res.status(404).json({
+                    message: 'User deleted, nut no thought found',
+                })
+            }
+            res.json({message: 'User Updated!'});
+        }catch(err){
+            console.log(err);
+            res.status(500).json(err);
+        }
+    },
+
     //Add a thought to a user
     async addThought(req, res){
         try{

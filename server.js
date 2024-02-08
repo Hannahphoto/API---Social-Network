@@ -53,6 +53,22 @@ app.post('/createUser', async (req, res)=>{
 });
 
 //put - update user by _id
+app.put('/users/:usersId', async (req, res)=>{
+    try{
+        //update user is model route
+        const updateUser = await Users.findOneAndUpdate(
+        {
+            username: req.body.username, 
+            email: req.body.email
+        },
+        );
+        console.log(updateUser);
+        res.status(200).json(updateUser);
+    }catch(err){
+        console.log(err);
+        res.status(500).json({message: "Bad request"})
+    }
+});
 
 // delete - remove a user by _id???????
 app.delete('/users/:userId', async (req, res)=>{
