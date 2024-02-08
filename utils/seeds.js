@@ -1,7 +1,6 @@
 const { connect } = require('mongoose');
 const connection = require('../config/connection');
 const {Users, Thoughts} = require('../models');
-// const {Thoughts} = require('../models/Thoughts')
 const userData = require('./usersSeed');
 const thoughtData = require('./thoughtsSeed');
 
@@ -11,6 +10,7 @@ connection.on('error', (err)=> err);
 connection.once('open', async () => {
     console.log('connected');
     console.log(userData);
+    console.log(thoughtData);
     
     try{
         //drop collections if they exist
@@ -30,19 +30,3 @@ connection.once('open', async () => {
 });
 
 
-// let usersList = await connection.db.listCollections({name:'users'}).toArray();
-// if (usersList.length){
-//     await connection.dropCollection('users');
-// }
-
-// Users.insertMany(userData);
-
-// let thoughtsList = await connection.db.listCollections({name: 'thoughts'}).toArray();
-// if (thoughtsList){
-//     await connection.dropCollection('thoughts');
-// }
-
-// await Thoughts.insertOne(thoughtData.map(id));    
-// await Thoughts.insertOne({
-//     thoughtText:
-// })

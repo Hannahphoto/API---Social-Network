@@ -25,6 +25,16 @@ app.get('/users', async (req, res)=>{
 });
 
 //Get single user by _id
+app.get('/users/:id', async (req, res)=>{
+    try{
+        //using model in users route to find one user via id
+        const user = await Users.findOne({});
+        console.log(user);
+        res.status(200).json(user);
+    }catch (err){
+        res.status(500).json({message: 'Internal server error'});
+    }
+});
 
 //post a new user
 
