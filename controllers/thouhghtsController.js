@@ -2,21 +2,17 @@ const {ObjectId} = require('mongoose').Types;
 const {Thoughts, Users}= require('../models');
 
 //aggregate function to get the number of thoughts overall 
-const thoughtsCount = async () =>{
-    const numberOfThoughts = await Thoughts.aggregate();
-    return numberOfThoughts;
-};
+// const thoughtsCount = async () =>{
+//     const numberOfThoughts = await Thoughts.aggregate();
+    // return numberOfThoughts;
+// };
 
 module.exports={
     //get all Thoughts
     async getThoughts(req, res){
         try{
             const thoughts = await Thoughts.find();
-            const thoughtsObj = {
-                thoughts,
-                thoughtsCount: await thoughtsCount(),
-            };
-            return res.json(thoughtsObj);
+            return res.json(thoughts);
         }catch(err){
             console.log(err);
             return res.status(500).json(err);
