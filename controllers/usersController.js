@@ -24,7 +24,7 @@ module.exports = {
     async getSingleUser(req, res){
         try{
         
-        const user = await Users.findOne({_id: new ObjectId(req.params.userId)})
+        const user = await Users.findOne({_id: ObjectId(req.params.userId)})
         .select()
         .lean();
         if(!user){
