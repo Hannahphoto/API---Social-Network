@@ -15,6 +15,14 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json());
 app.use(routes);
 
+
+
+db.once('open', ()=>{
+    app.listen(PORT, ()=>{
+        console.log(`API server running on port http://localhost:${PORT}`);
+    });
+});
+
 //Get all users
 // app.get('/users', async (req, res)=>{
 //     try{
@@ -104,9 +112,3 @@ app.use(routes);
 //update thought by thought _id
 
 //delete thought by thought _id
-
-db.once('open', ()=>{
-    app.listen(PORT, ()=>{
-        console.log(`API server running on port http://localhost:${PORT}`);
-    });
-});

@@ -12,7 +12,7 @@ module.exports = {
     //get all users
     async getUsers(req, res){
         try{
-            const users = await Users.find();
+            const users = await Users.find()
             return res.json(users);
         }catch(err){
             console.log(err);
