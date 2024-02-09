@@ -23,8 +23,10 @@ module.exports = {
     //get a single user
     async getSingleUser(req, res){
         try{
-        const user = await Users.findOne({_id:req.params.userId})
+        
+        const user = await Users.findOne({_id: new ObjectId(req.params.userId)})
         .select()
+        .lean();
         if(!user){
             return res.status(404).json({message: 'No user with that ID'});
         }}catch(err){
