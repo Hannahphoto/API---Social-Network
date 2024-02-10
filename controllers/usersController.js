@@ -1,5 +1,5 @@
 //ObjectId() method for converting usersId string into an ObjectId for querying database
-const {ObjectId}= require('mongoose').Types;
+const mongoose = require('mongoose');
 const {Users, Thoughts} = require('../models');
 
 //aggregate function to get the number of users overall 
@@ -24,7 +24,7 @@ module.exports = {
     async getSingleUser(req, res){
         try{
         
-        const user = await Users.findOne({_id: ObjectId(req.params.userId)})
+        const user = await Users.findOne({_id: (req.params.userId)}).populate('tags')
         .select()
         .lean();
         if(!user){

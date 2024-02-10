@@ -2,11 +2,6 @@ const {Schema, model } = require('mongoose');
 
 const usersSchema = new Schema(
     {
-        // _id:{
-        //     type: Schema.Types.ObjectId,
-        //     auto: true,
-        //     required: true,
-        // },
         username: {
             type: String,
             required: true, 
@@ -18,21 +13,26 @@ const usersSchema = new Schema(
         },
         thoughts: [{
             //array of _id values referencing the Thought model 
-            type: Schema.Types.ObjectId,
+            type: Schema.ObjectId,
             ref: 'Thoughts'
         }],
         friends: [{
             //array of _id values referencing the User Model (self-reference)
   
-            type: Schema.Types.ObjectId,
+            type: Schema.ObjectId,
             ref: 'User'
         }],
+        tags: [{
+            type: Schema.Types.ObjectId,
+            ref: 'tag', //look like an _id, ObjectId
+        }]
     },
 
     //schema settings - create a virtual called friendCount that retrieves the length of the uses friends array field on query
     {
         toJSON:{
-            virtruals: true
+            virtruals: true,
+            // getters: true,
         },
     }
 
