@@ -14,7 +14,10 @@ const thoughtsSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now, 
-            // get: timestamp => dateFormat(timestamp),
+            get: function(timestamp){
+                //custome function to format the date
+                return new Date(timestamp).toString();
+            },
         },
         username: {//the user that created this thought
             type: String,

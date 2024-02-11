@@ -24,7 +24,7 @@ module.exports = {
     async getSingleUser(req, res){
         try{
         
-        const user = await Users.findOne({_id: (req.params.userId)}).populate('tags')
+        const user = await Users.findOne({_id: (req.params.userId)})
         .select()
         .lean();
         if(!user){

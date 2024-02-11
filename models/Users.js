@@ -4,12 +4,17 @@ const usersSchema = new Schema(
     {
         username: {
             type: String,
-            required: true, 
+            required: true,
+            Unique: true,
+            trimmed: true,
+             
         },
         email: {
             type: String, 
             required: true,
+            Unique: true,
             //much mach valid email address (look into mongoose's matching validation)
+            match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
         },
         thoughts: [{
             //array of _id values referencing the Thought model 
@@ -22,10 +27,6 @@ const usersSchema = new Schema(
             type: Schema.ObjectId,
             ref: 'User'
         }],
-        tags: [{
-            type: Schema.Types.ObjectId,
-            ref: 'tag', //look like an _id, ObjectId
-        }]
     },
 
     //schema settings - create a virtual called friendCount that retrieves the length of the uses friends array field on query
