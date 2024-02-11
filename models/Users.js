@@ -2,6 +2,7 @@ const {Schema, model } = require('mongoose');
 
 const usersSchema = new Schema(
     {
+        // userId: {type:Schema.Types.ObjectId},
         username: {
             type: String,
             required: true,
@@ -39,6 +40,6 @@ const usersSchema = new Schema(
 
 );
 
-const Users = model('user', usersSchema);
+const Users = model('User', usersSchema);
 
 module.exports = Users;
