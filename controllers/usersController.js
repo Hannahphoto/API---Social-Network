@@ -89,7 +89,7 @@ module.exports = {
             console.log('you are adding an assignment');
             const user = await Users.findByIdAndUpdate(
                 req.params.userId,
-                {$addToSet: {thought: req.body}},
+                {$addToSet: {thoughtText: req.body}},
                 {runValidators: true, new: true}
             );
             if(!user){
@@ -97,7 +97,7 @@ module.exports = {
                 .status(404)
                 .json({message: "No user found with that Id"});
             }
-            res.json(user);
+             return res.json(user);
         }catch(err){
             res.status(500).json(err);
         }
