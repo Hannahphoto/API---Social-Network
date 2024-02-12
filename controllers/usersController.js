@@ -54,20 +54,7 @@ module.exports = {
             const user = await Users.findOneAndDelete({_id: req.params.userId});
             if(!user){
                 return res.status(404).json({message: "No such user exits."})
-            }
-
-            const thought = await Thoughts.findOneAndUpdate(
-                {users: req.params.userId},
-                {$pull: {users: req.params.userId}},
-                {new: true}
-                )
-            if(!thought){
-                return res.status(404).json({
-                    message: 'User deleted, nut no thought found',
-                })
-            }
-            
-            res.json({message:'User successfully deleted.'});
+            }return res.json({message: 'User successfully deleted', user});
         }catch(err){
             console.log(err);
             res.status(500).json(err);
@@ -78,12 +65,15 @@ module.exports = {
     async updateUser(req, res){
         try{
             const user = await Users.findByIdAndUpdate(
+                req.params.userId,
                 {
-                // _id: req.params.userId,
                 username: req.body.username, 
                 email: req.body.email,
+                },
+                {
                 new: true,
-                });
+                }
+                );
             if(!user){
                 return res.status(404).json({message: "No such user exists."})
             } return res.json(user);
@@ -97,8 +87,8 @@ module.exports = {
     async addThought(req, res){
         try{
             console.log('you are adding an assignment');
-            const user = await Users.findOneAndUpdate(
-                {_id: req.params.userId},
+            const user = await Users.findByIdAndUpdate(
+                req.params.userId,
                 {$addToSet: {thought: req.body}},
                 {runValidators: true, new: true}
             );
@@ -144,3 +134,15 @@ module.exports = {
     //     })
     // }//return both the updated user and the thought
     // console.log(thought);
+
+    
+    // const thought = await Thoughts.findOneAndUpdate(
+    //     {users: req.params.userId},
+    //     {$pull: {users: req.params.userId}},
+    //     {new: true}
+    //     )
+    // if(!thought){
+    //     return res.status(404).json({
+    //         message: 'User deleted, nut no thought found',
+    //     })
+    // }res.json({message:'User successfully deleted.'});

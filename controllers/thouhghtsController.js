@@ -46,28 +46,46 @@ module.exports={
     //delete a thought and remove it
     async deleteThought(req, res){
         try{
-            const thought = await Thoughts.findOneAndRemove({_id: req.params.thoughtId});
+            const thought = await Thoughts.findOneAndDelete({_id: req.params.thoughtId});
             if(!thought){
                 return res.status(404).json({message: "No such thought exits."})
             }
+            res.json({message:'Thought successfully deleted.'});
+        }catch(err){
+            console.log(err);
+            res.status(500).json(err);
+        }
+        const user = await Users.findByIdAndUpdate(
+            req.params.userId,
+            {$pull: {users: req.params.thoughtId}},
+            {new: true}
+            )
+        if(!user){
+            return res.status(404).json({
+                message: 'User deleted, no thought found',
+            })
+        }return res.json(user);
+    },
 
-            const user = await Users.findOneAndUpdate(
-                {users: req.params.userId},
-                {$pull: {users: req.params.thoughtId}},
-                {new: true}
-                )
+    //Update Thought
+    async updateThought(req, res){
+        try{
+            const thought = await Thoughts.findByIdAndUpdate(
+                {_id: req.params.thoughtId},
+                // {thoughtText: req.body},
+                {
+                new: true,
+                }
+                );
             if(!thought){
-                return res.status(404).json({
-                    message: 'User deleted, nut no thought found',
-                })
-            }
-            
-            res.json({message:'User successfully deleted.'});
+                return res.status(404).json({message: "No such thought exists."})
+            } return res.json(thought);
         }catch(err){
             console.log(err);
             res.status(500).json(err);
         }
     },
+
 
 };
 
