@@ -22,9 +22,11 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 
 ## Walkthrough Video
 
+https://youtu.be/tThLCMctqrc
 
 ## GitHub
 
+https://github.com/Hannahphoto/API---Social-Network
 
 ## Screenshot
 
