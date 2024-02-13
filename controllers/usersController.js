@@ -65,11 +65,10 @@ module.exports = {
     async updateUser(req, res){
         try{
             const user = await Users.findByIdAndUpdate(
-                req.params.userId,
-                {
-                username: req.body.username, 
-                email: req.body.email,
-                },
+                {_id: req.params.userId},
+                {$set:
+                {username: req.body.username, 
+                email: req.body.email}},                
                 {
                 new: true,
                 }

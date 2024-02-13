@@ -72,10 +72,8 @@ module.exports={
         try{
             const thought = await Thoughts.findByIdAndUpdate(
                 {_id: req.params.thoughtId},
-                // {thoughtText: req.body},
-                {
-                new: true,
-                }
+                {$set: req.body},
+                {new: true},
                 );
             if(!thought){
                 return res.status(404).json({message: "No such thought exists."})

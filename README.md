@@ -1,7 +1,9 @@
 # API---Social-Network
+
 An API for  a social network web application. 
 
 ## User Story
+
 AS A social media startup
 I WANT an API for my social network that uses a NoSQL database
 SO THAT my website can handle large amounts of unstructured data
@@ -16,4 +18,16 @@ THEN the data for each of these routes is displayed in a formatted JSON
 WHEN I test API POST, PUT, and DELETE routes in Insomnia
 THEN I am able to successfully create, update, and delete users and thoughts in my database
 WHEN I test API POST and DELETE routes in Insomnia
-THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
+THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list.
+
+## Walkthrough Video
+
+
+## GitHub
+
+
+## Screenshot
+
+<div align="center">
+    <img src="./images/postman.png" href = "Screenshot of the Postman GET Route." />
+    </div>
